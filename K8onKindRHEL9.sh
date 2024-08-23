@@ -84,6 +84,7 @@ echo "2. Navigate to Deployment, Add, and select 'Prepare Kubernetes Configurati
 echo "3. Select 'Create new API keys' and then 'Generate Key and YAML'."
 echo "4. Copy the contents of 'config-map.yaml'."
 echo "5. Now, copy the contents of 'secret.yaml'."
+echo #6. Make sure the API has Org Owner role and the IP address is added"
 
 # Taking input for config-map.yaml
 echo "Please paste the content of 'config-map.yaml' and type press ctrl+d when done:"
