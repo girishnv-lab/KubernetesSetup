@@ -8,4 +8,8 @@ Step 2 :
 git clone https://github.com/girishnv-lab/RHEL9k8onkind.git
 
 Step 3 : 
-sh RHEL9k8onkind/
+sh RHEL9k8onkind/K8onKindRHEL9.sh
+
+Step 4 : 
+
+Enjoy....!!!!!
