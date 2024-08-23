@@ -1,3 +1,5 @@
+echo "Credit to Roshan Bharti for the ready made kind configuration". 
+
 #!/bin/bash
 
 # Function to check if a command is available
