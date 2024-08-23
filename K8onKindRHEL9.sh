@@ -86,11 +86,11 @@ echo "4. Copy the contents of 'config-map.yaml'."
 echo "5. Now, copy the contents of 'secret.yaml'."
 
 # Taking input for config-map.yaml
-echo "Please paste the content of 'config-map.yaml' and type 'EOF' on a new line when done:"
+echo "Please paste the content of 'config-map.yaml' and type press ctrl+d when done:"
 cat > config-map.yaml
 
 # Taking input for secret.yaml
-echo "Please paste the content of 'secret.yaml' and type 'EOF' on a new line when done:"
+echo "Please paste the content of 'secret.yaml' and type press ctrl+d when done:"
 cat > secret.yaml
 
 # Applying the YAML files
