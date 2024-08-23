@@ -74,6 +74,9 @@ git clone https://github.com/mongodb/mongodb-enterprise-kubernetes.git
 echo "Creating MongoDB namespace..."
 kubectl create namespace mongodb
 
+#Set mongodb namespace as default context 
+kubectl config set-context $(kubectl config current-context) --namespace=mongodb
+
 # Creating MongoDB Enterprise Operator
 echo "Creating MongoDB Enterprise Operator..."
 kubectl apply -f mongodb-enterprise-kubernetes/crds.yaml
@@ -91,11 +94,11 @@ echo "5. Now, copy the contents of 'secret.yaml'."
 echo "6. Make sure the API has Org Owner role and the IP address is added"
 
 # Taking input for config-map.yaml
-echo "Please paste the content of 'config-map.yaml' and type press ctrl+d when done:"
+echo "Please paste the content of 'config-map.yaml' press enter (new line) and type press ctrl+d when done:"
 cat > config-map.yaml
 
 # Taking input for secret.yaml
-echo "Please paste the content of 'secret.yaml' and type press ctrl+d when done:"
+echo "Please paste the content of 'secret.yaml' press enter (new line) and type press ctrl+d when done:"
 cat > secret.yaml
 
 # Applying the YAML files
