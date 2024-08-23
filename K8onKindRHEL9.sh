@@ -1,4 +1,6 @@
 echo "Credit to Roshan Bharti for the ready made kind configuration". 
+echo ""
+echo ""
 
 #!/bin/bash
 
