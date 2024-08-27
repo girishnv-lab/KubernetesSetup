@@ -109,6 +109,7 @@ kubectl apply -f config-map.yaml -f secret.yaml -n mongodb
 echo "Successfully configured Kubernetes."
 echo "If you would like to deploy a replica set, please modify the file 'mongodb-enterprise-kubernetes/samples/mongodb/minimal/replica-set.yaml'."
 echo "Remove all the options from 'podTemplate:'."
+echo "Change the credentials from "my-credentials" to "organization-secret""
 echo "Once 'replica-set.yaml' is edited, apply it using the following command:"
 echo "kubectl apply -f mongodb-enterprise-kubernetes/samples/mongodb/minimal/replica-set.yaml -n mongodb"
 
