@@ -24,7 +24,7 @@ cd /tmp
 
 # Detect OS and install Docker accordingly
 if [ -f /etc/redhat-release ]; then
-    # For RHEL
+    # For RHEL-based systems
     echo "Detected RHEL-based system"
     sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
     sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
@@ -33,26 +33,12 @@ if [ -f /etc/redhat-release ]; then
     sudo systemctl enable docker
 
 elif [ -f /etc/amazon-linux-release ]; then
-    if grep -q "Amazon Linux 2023" /etc/amazon-linux-release; then
-        # For Amazon Linux 2023
-        echo "Detected Amazon Linux 2023"
-        sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
-        sudo amazon-linux-extras install -y docker
-        sudo systemctl start docker
-        sudo systemctl enable docker
-
-    elif grep -q "Amazon Linux 2" /etc/amazon-linux-release; then
-        # For Amazon Linux 2
-        echo "Detected Amazon Linux 2"
-        sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
-        sudo amazon-linux-extras install -y docker
-        sudo systemctl start docker
-        sudo systemctl enable docker
-
-    else
-        echo "Unsupported Amazon Linux version"
-        exit 1
-    fi
+    # For Amazon Linux systems (2023 and 2)
+    echo "Detected Amazon Linux system"
+    sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
+    sudo amazon-linux-extras install -y docker
+    sudo systemctl start docker
+    sudo systemctl enable docker
 
 else
     echo "Unsupported OS"
