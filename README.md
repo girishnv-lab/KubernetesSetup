@@ -8,7 +8,7 @@ Step 2 :
 git clone https://github.com/girishnv-lab/RHEL9k8onkind.git
 
 Step 3 : 
-sh RHEL9k8onkind/K8onKindRHEL9.sh
+sh RHEL9k8onkind/KubeonRHEL9.sh
 
 Step 4 : 
 
@@ -23,7 +23,7 @@ Step 2 :
 git clone https://github.com/girishnv-lab/RHEL9k8onkind.git
 
 Step 3 : 
-sh RHEL9k8onkind/k8onall.sh
+sh RHEL9k8onkind/Kubeonall.sh
 
 Step 4 : 
 
