@@ -10,8 +10,6 @@ command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-echo "This script installs Docker and other tools on RHEL and Amazon Linux only."
-
 # Check for prerequisites
 echo "Checking for prerequisites..."
 for cmd in curl git dnf yum; do
@@ -21,90 +19,41 @@ for cmd in curl git dnf yum; do
     fi
 done
 
+# cd to /tmp
+cd /tmp
+
 # Detect OS and install Docker accordingly
 if [ -f /etc/redhat-release ]; then
-    if grep -q "Red Hat" /etc/redhat-release; then
-        echo "Detected RHEL-based system"
+    # For RHEL
+    echo "Detected RHEL-based system"
+    sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
+    sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+    sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    sudo systemctl start docker
+    sudo systemctl enable docker
 
-        # Removing old Docker packages if any
-        echo "Removing old Docker packages if any..."
-        sudo yum remove -y docker \
-            docker-client \
-            docker-client-latest \
-            docker-common \
-            docker-latest \
-            docker-latest-logrotate \
-            docker-logrotate \
-            docker-engine
-
-        # Setting up Docker repository for RHEL
-        echo "Setting up Docker repository for RHEL..."
-        sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
-
-        # Installing Docker
-        echo "Installing Docker Engine..."
-        sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-        # Starting and enabling Docker
-        echo "Starting and enabling Docker..."
+elif [ -f /etc/amazon-linux-release ]; then
+    if grep -q "Amazon Linux 2023" /etc/amazon-linux-release; then
+        # For Amazon Linux 2023
+        echo "Detected Amazon Linux 2023"
+        sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
+        sudo amazon-linux-extras install -y docker
         sudo systemctl start docker
         sudo systemctl enable docker
 
-    elif [ -f /etc/amazon-linux-release ] || [ -f /etc/system-release ]; then
-        if grep -i "Amazon Linux release 2023" /etc/amazon-linux-release; then
-            echo "Detected Amazon Linux 2023"
+    elif grep -q "Amazon Linux 2" /etc/amazon-linux-release; then
+        # For Amazon Linux 2
+        echo "Detected Amazon Linux 2"
+        sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
+        sudo amazon-linux-extras install -y docker
+        sudo systemctl start docker
+        sudo systemctl enable docker
 
-            # Removing old Docker packages if any
-            echo "Removing old Docker packages if any..."
-            sudo yum remove -y docker \
-                docker-client \
-                docker-client-latest \
-                docker-common \
-                docker-latest \
-                docker-latest-logrotate \
-                docker-logrotate \
-                docker-engine
-
-            # Installing Docker for Amazon Linux 2023
-            echo "Installing Docker Engine for Amazon Linux 2023..."
-            sudo amazon-linux-extras install -y docker
-
-            # Starting and enabling Docker
-            echo "Starting and enabling Docker..."
-            sudo systemctl start docker
-            sudo systemctl enable docker
-
-        elif grep -i "Amazon Linux 2" /etc/amazon-linux-release || grep -i "Amazon Linux 2" /etc/system-release; then
-            echo "Detected Amazon Linux 2"
-
-            # Removing old Docker packages if any
-            echo "Removing old Docker packages if any..."
-            sudo yum remove -y docker \
-                docker-client \
-                docker-client-latest \
-                docker-common \
-                docker-latest \
-                docker-latest-logrotate \
-                docker-logrotate \
-                docker-engine
-
-            # Installing Docker for Amazon Linux 2
-            echo "Installing Docker Engine for Amazon Linux 2..."
-            sudo amazon-linux-extras install -y docker
-
-            # Starting and enabling Docker
-            echo "Starting and enabling Docker..."
-            sudo systemctl start docker
-            sudo systemctl enable docker
-
-        else
-            echo "Unsupported Amazon Linux system"
-            exit 1
-        fi
     else
-        echo "Unsupported RHEL-based system"
+        echo "Unsupported Amazon Linux version"
         exit 1
     fi
+
 else
     echo "Unsupported OS"
     exit 1
