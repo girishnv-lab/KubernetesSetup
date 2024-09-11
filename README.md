@@ -14,7 +14,7 @@ Step 4 :
 
 Enjoy....!!!!!
 
-#If you want to install on any platform (RHEL/AMAZON LINUX 2023/AMAZON LINUX 2) then,
+# If you want to install on any platform (RHEL/AMAZON LINUX 2023/AMAZON LINUX 2) then,
 
 Step 1 : 
 cd /tmp
