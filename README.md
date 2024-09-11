@@ -4,7 +4,7 @@
 cd /tmp
 
 ### Step 2 :
-git clone [https://github.com/girishnv-lab/RHEL9k8onkind.git](https://github.com/girishnv-lab/KubernetesSetup.git)
+git clone https://github.com/girishnv-lab/KubernetesSetup.git
 
 ### Step 3 : 
 sh RHEL9k8onkind/KubeonRHEL9.sh
@@ -19,7 +19,7 @@ Enjoy....!!!!!
 cd /tmp
 
 ### Step 2 :
-git clone [https://github.com/girishnv-lab/RHEL9k8onkind.git](https://github.com/girishnv-lab/KubernetesSetup.git)
+git clone https://github.com/girishnv-lab/KubernetesSetup.git
 
 ### Step 3 : 
 sh RHEL9k8onkind/Kubeonall.sh
