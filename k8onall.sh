@@ -51,7 +51,7 @@ if [ -f /etc/redhat-release ]; then
         sudo systemctl enable docker
 
     elif [ -f /etc/amazon-linux-release ] || [ -f /etc/system-release ]; then
-        if grep -i "Amazon Linux release 2023" /etc/amazon-linux-release || grep -i "Amazon Linux 2023" /etc/system-release; then
+        if grep -i "Amazon Linux release 2023" /etc/amazon-linux-release || grep -i "Amazon Linux release 2023" /etc/system-release; then
             echo "Detected Amazon Linux 2023"
 
             # Removing old Docker packages if any
