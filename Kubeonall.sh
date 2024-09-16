@@ -57,7 +57,7 @@ sudo install -o root -g root -m 0755 kubectl /usr/bin/kubectl
 
 # Installing Kind cluster
 echo "Installing Kind cluster..."
-curl -Lo kind-config.yaml https://raw.githubusercontent.com/bhartiroshan/OpsManager/master/kind-config.yaml
+curl -Lo kind-config.yaml https://github.com/girishnv-lab/KubernetesSetup/blob/main/kind-config.yaml
 echo "Creating Kind cluster with custom configuration..."
 kind create cluster --config kind-config.yaml --retain --image "kindest/node:v1.21.14"
 
