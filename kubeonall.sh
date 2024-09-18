@@ -104,10 +104,24 @@ kubectl apply -f config-map.yaml -f secret.yaml -n mongodb
 
 # Final instructions
 echo "Successfully configured Kubernetes."
-echo "If you would like to deploy a replica set, please modify the file 'mongodb-enterprise-kubernetes/samples/mongodb/minimal/replica-set.yaml'."
-echo "Remove all the options from 'podTemplate:'."
-echo "Change the credentials from 'my-credentials' to 'organization-secret'."
-echo "Once 'replica-set.yaml' is edited, apply it using the following command:"
-echo "kubectl apply -f mongodb-enterprise-kubernetes/samples/mongodb/minimal/replica-set.yaml -n mongodb"
+#!/bin/bash
 
-echo "Configuration complete."
+# Prompt the user for input
+read -p "Do you want to deploy a replicaset? (Y/y/yes or N/n/no): " answer
+
+# Convert input to lowercase for easier comparison
+answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
+
+# Check user input
+if [[ "$answer" == "y" || "$answer" == "yes" ]]; then
+    echo "Deploying replicaset..."
+    kubectl apply -f /tmp/KubernetesSetup/replicaset.yaml -n mongodb
+elif [[ "$answer" == "n" || "$answer" == "no" ]]; then
+    echo "Exiting without deploying replicaset."
+    exit 0
+else
+    echo "Configuration complete."
+    exit 1
+fi
+
+echo ""
