@@ -1,0 +1,70 @@
+apiVersion: mongodb.com/v1
+kind: MongoDBOpsManager
+metadata:
+  name: ops-manager-pod-spec
+spec:
+  replicas: 1
+  version: 6.0.15
+  adminCredentials: ops-manager-admin-secret
+  statefulSet:
+    spec:
+      template:
+        metadata:
+          annotations:
+            key1: value1
+        spec:
+          containers:
+            - name: mongodb-ops-manager
+              resources:
+                requests:
+                  memory: "100Mi"
+                  cpu: "100m"
+                limits:
+                  memory: "500Mi"
+                  cpu: "500m"
+          initContainers:
+            - name: mongodb-enterprise-init-ops-manager
+              resources:
+                requests:
+                  memory: "100Mi"
+                  cpu: "100m"
+                limits:
+                  memory: "500Mi"
+                  cpu: "500m"
+  applicationDatabase:
+    topology: SingleCluster
+    members: 3
+    version: "6.0.5-ubi8"
+    podSpec:
+      podTemplate:
+        spec:
+          securityContext:
+            fsGroup: 2000
+            runAsNonRoot: true
+            runAsUser: 2000
+          containers:
+            - name: mongod
+              resources:
+                requests:
+                  memory: "500Mi"
+                  cpu: "500m"
+                limits:
+                  memory: "1000Mi"
+                  cpu: "1"
+            - name: mongodb-agent
+              resources:
+                requests:
+                  memory: "100Mi"
+                  cpu: "100m"
+                limits:
+                  memory: "500Mi"
+                  cpu: "500m"
+          initContainers:
+            - name: mongodb-enterprise-init-appdb
+              resources:
+                requests:
+                  memory: "100Mi"
+                  cpu: "100m"
+                limits:
+                  memory: "500Mi"
+                  cpu: "500m"
