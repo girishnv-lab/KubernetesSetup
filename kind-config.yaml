@@ -23,4 +23,10 @@ nodes:
     - containerPort: 30081
       hostPort: 8081
       protocol: TCP
+    - containerPort: 389    # Port inside the container (LDAP port)
+      hostPort: 389         # Port on the host machine (exposed)
+      protocol: TCP
+    - containerPort: 30002  # Optionally expose a different external port (NodePort)
+      hostPort: 30002       # Port on the host machine for NodePort access
+      protocol: TCP
 - role: worker
