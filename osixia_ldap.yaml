@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openldap
+  namespace: mongodb  # You can replace this with your desired namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openldap
+  template:
+    metadata:
+      labels:
+        app: openldap
+    spec:
+      containers:
+        - name: openldap
+          image: osixia/openldap:latest
+          ports:
+            - containerPort: 389
+          env:
+            - name: LDAP_ADMIN_USERNAME
+              value: "admin"
+            - name: LDAP_ADMIN_PASSWORD
+              value: "admin12345"
+            - name: LDAP_ORGANIZATION
+              value: "MyOrganization"
+            - name: LDAP_DOMAIN
+              value: "example.com"
+          volumeMounts:
+            - name: ldap-data
+              mountPath: /var/lib/ldap
+            - name: ldap-config
+              mountPath: /etc/ldap/slapd.d
+      volumes:
+        - name: ldap-data
+          emptyDir: {}  # You can replace this with a persistent volume claim if needed
+        - name: ldap-config
+          emptyDir: {}
