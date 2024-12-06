@@ -1,0 +1,13 @@
+dn: uid=gireesh.n,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+cn: Gireesh N
+sn: N
+uid: gireesh.n
+uidNumber: 1001
+gidNumber: 1001
+homeDirectory: /home/gireesh.n
+loginShell: /bin/bash
+userPassword: Yeno.ondu1!
+mail: gireesh.n@mongodb.com
