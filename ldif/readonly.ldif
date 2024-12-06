@@ -1,0 +1,4 @@
+dn: cn=readonlygroup,ou=groups,dc=example,dc=com
+objectClass: groupOfNames
+cn: readonlygroup
+member: uid=gireesh.n,ou=users,dc=example,dc=com
