@@ -1,0 +1,11 @@
+list all the users and groups 
+ldapsearch -x -H <ldaphost>:389 -D "cn=admin,dc=example,dc=com" -w admin12345 -b "dc=example,dc=com" "(objectClass=*)"
+
+list all the users
+ldapsearch -x -H <ldaphost>:389 -D "cn=admin,dc=example,dc=com" -w "admin12345" -b "ou=users,dc=example,dc=com" "(objectclass=person)"
+
+Add user / group 
+ldapadd -x -H <ldaphost>:389  -D "cn=admin,dc=example,dc=com" -w admin12345 -f group.ldif/user.ldif
+
+Delete user 
+ldapdelete -x -H  <ldaphost>:389 -D "cn=admin,dc=example,dc=com" -w admin12345 "uid=john.doe,ou=users,dc=example,dc=com"
