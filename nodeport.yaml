@@ -12,4 +12,4 @@ spec:
       targetPort: 8080    # The port on the pod that the service should forward to
       nodePort: 30080     # The static port on each node to expose the service
   selector:
-    app: ops-manager-svc  # The label used to select the correct pods
+    app: om-svc  # The label used to select the correct pods
